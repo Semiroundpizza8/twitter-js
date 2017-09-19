@@ -3,11 +3,21 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const volleyball = require("volleyball");
-const routes = require("./routes"); 
+const routes = require("./routes");
 const path = require("path");
+const bodyParser = require("body-parser");
+const fs = require('fs');
 
-app.use('/', routes);
 app.use(morgan("dev"));
+
+//-----------------------
+// Parse the application
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Parse application/ JSON
+app.use(bodyParser.json());
+
+//-------------------
 
 app.engine("html", nunjucks.render);
 app.set("view engine", "html");
@@ -35,3 +45,5 @@ var locals = {
 
 
 const people = [{ name: "Full" }, { name: "Stacker" }, { name: "Son" }];
+
+app.use('/', routes);
