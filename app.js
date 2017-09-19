@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 
 app.listen(3000, function () {
-    console.log("hello!");
+    console.log("Active on port 3000!");
 });
 
 var locals = {
